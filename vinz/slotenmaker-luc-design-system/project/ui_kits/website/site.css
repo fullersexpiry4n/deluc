@@ -1110,7 +1110,7 @@ a.contact-value:hover {
    ============================================================ */
 @media (max-width: 768px) {
   .nav { display: none; }
-  .hamburger { display: flex; }
+  .hamburger { display: flex; margin-left: auto; }
   .mobile-menu { display: flex; }
   .header-cta { display: none; }
   .sticky-bar { display: block; }

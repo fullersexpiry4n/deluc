@@ -4,12 +4,8 @@ import { LotMark, BrassRule } from './Atoms';
 import { LampSilhouette } from './LampSilhouette';
 
 export const ProductCard = ({ piece }: { piece: Piece }) => (
-  <Link href={`/catalogue/${piece.lot}`} style={{ border: 0, display: 'flex', flexDirection: 'column', gap: 16, cursor: 'pointer' }}>
-    <div style={{
-      width: '100%', aspectRatio: '1 / 1',
-      background: 'var(--carta)',
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-    }}>
+  <Link href={`/catalogue/${piece.lot}`} className="product-card">
+    <div className="product-card-image">
       <LampSilhouette tone={piece.shadeTone} />
     </div>
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>

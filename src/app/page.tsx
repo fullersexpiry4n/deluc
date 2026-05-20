@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { PIECES, MAISONS } from '@/lib/data';
-import { BrassRule, MonoCaps, Button, Maison } from '@/components/Atoms';
+import { BrassRule, MonoCaps, LinkButton, Maison } from '@/components/Atoms';
 import { ProductCard } from '@/components/ProductCard';
 import { LampSilhouette } from '@/components/LampSilhouette';
 
@@ -10,24 +10,10 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section style={{
-        padding: '120px 56px 96px',
-        display: 'grid',
-        gridTemplateColumns: '1.1fr 1fr',
-        gap: 64,
-        alignItems: 'end',
-      }}>
+      <section className="page-hero" aria-label="Hero">
         <div>
           <MonoCaps size={11} opacity={0.6}>№ 001 · MILANO · MMXXVI</MonoCaps>
-          <h1 style={{
-            fontFamily: 'var(--font-serif)',
-            fontWeight: 400,
-            fontSize: 88,
-            lineHeight: 1.02,
-            letterSpacing: '0.02em',
-            margin: '20px 0 28px',
-            maxWidth: '14ch',
-          }}>
+          <h1 className="hero-title">
             <em style={{ fontStyle: 'italic' }}>Italian lighting,</em><br />returned.
           </h1>
           <BrassRule width={80} style={{ margin: '0 0 28px' }} />
@@ -47,30 +33,20 @@ export default function HomePage() {
             We do not list pieces we have not handled.
           </p>
           <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap' }}>
-            <Link href="/catalogue" style={{ border: 0 }}>
-              <Button>VEDI IL CATALOGO · VIEW CATALOGUE</Button>
-            </Link>
-            <Link href="/contact" style={{ border: 0 }}>
-              <Button variant="brass">Richiedi un appuntamento →</Button>
-            </Link>
+            <LinkButton href="/catalogue">VEDI IL CATALOGO · VIEW CATALOGUE</LinkButton>
+            <LinkButton href="/contact" variant="brass">Richiedi un appuntamento →</LinkButton>
           </div>
         </div>
-        <div style={{
-          background: 'var(--carta)',
-          aspectRatio: '4/5',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
+        <div className="hero-image">
           <LampSilhouette tone="#E8E1D2" scale={1.7} />
         </div>
       </section>
 
-      <BrassRule width={80} style={{ margin: '0 56px' }} />
+      <BrassRule width={80} className="rule-section" />
 
       {/* Featured pieces */}
-      <section style={{ padding: '80px 56px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 40 }}>
+      <section className="section-pad" aria-label="Uitgelichte stukken">
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 40, flexWrap: 'wrap', gap: 12 }}>
           <h2 style={{
             fontFamily: 'var(--font-serif)',
             fontWeight: 400,
@@ -90,15 +66,15 @@ export default function HomePage() {
             paddingBottom: 2,
           }}>VEDI TUTTI · VIEW ALL →</Link>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '64px 48px' }}>
+        <div className="grid-3">
           {featured.map(p => <ProductCard key={p.lot} piece={p} />)}
         </div>
       </section>
 
-      <BrassRule width={80} style={{ margin: '0 56px' }} />
+      <BrassRule width={80} className="rule-section" />
 
       {/* Manifesto */}
-      <section style={{ padding: '80px 56px', display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 64 }}>
+      <section className="section-pad grid-manifesto" aria-label="Manifesto">
         <div>
           <MonoCaps size={11} opacity={0.6}>§ MANIFESTO</MonoCaps>
           <h2 style={{
@@ -121,7 +97,7 @@ export default function HomePage() {
             Wiring is brought to current Italian standards before a piece leaves the workshop. Original labels are preserved; replaced parts are noted.{' '}
             <span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>The lamp leaves us doing its job.</span>
           </p>
-          <div style={{ marginTop: 28, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          <div className="grid-pillars">
             {[
               ['§01', 'Documented', 'Maker, period, provenance.'],
               ['§02', 'Restored', 'CE-compliant rewiring; original labels preserved.'],
@@ -137,11 +113,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      <BrassRule width={80} style={{ margin: '0 56px' }} />
+      <BrassRule width={80} className="rule-section" />
 
       {/* Maisons row */}
-      <section style={{ padding: '72px 56px 96px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 32 }}>
+      <section className="section-pad-sm" aria-label="Maisons">
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 32, flexWrap: 'wrap', gap: 12 }}>
           <h2 style={{
             fontFamily: 'var(--font-serif)',
             fontWeight: 400,
@@ -153,7 +129,7 @@ export default function HomePage() {
           </h2>
           <MonoCaps size={11} opacity={0.6}>10 case · 1932 — present</MonoCaps>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '24px 40px' }}>
+        <div className="grid-5">
           {MAISONS.map(m => (
             <div key={m.name} style={{ paddingBottom: 14, borderBottom: '1px solid rgba(20,20,20,0.1)' }}>
               <div style={{ fontFamily: 'var(--font-serif)', fontSize: 22, letterSpacing: '0.01em' }}>{m.name}</div>

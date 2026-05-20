@@ -12,8 +12,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="it">
       <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <a href="#main-content" className="skip-link">Salta al contenuto principale</a>
         <Header />
-        <main style={{ flex: 1 }}>{children}</main>
+        <main id="main-content" style={{ flex: 1 }}>{children}</main>
         <Footer />
       </body>
     </html>

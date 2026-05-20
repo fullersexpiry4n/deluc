@@ -1,4 +1,5 @@
 import React, { CSSProperties, ElementType } from 'react';
+import Link from 'next/link';
 
 export const LotMark = ({ n, label, level = 'med' }: { n: string; label?: string; level?: 'sm' | 'med' | 'lg' }) => {
   const sizes = { sm: 11, med: 13, lg: 18 };
@@ -14,8 +15,16 @@ export const LotMark = ({ n, label, level = 'med' }: { n: string; label?: string
   );
 };
 
-export const BrassRule = ({ width = 80, style = {} }: { width?: number | string; style?: CSSProperties }) => (
-  <hr style={{ border: 0, height: 1, background: 'var(--ottone-brunito)', width, margin: '20px 0', ...style }} />
+export const BrassRule = ({
+  width = 80,
+  style = {},
+  className = '',
+}: {
+  width?: number | string;
+  style?: CSSProperties;
+  className?: string;
+}) => (
+  <hr className={className} style={{ border: 0, height: 1, background: 'var(--ottone-brunito)', width, ...style }} />
 );
 
 export const MonoCaps = ({
@@ -53,30 +62,27 @@ export const Button = ({
   onClick?: () => void;
   type?: 'button' | 'submit';
   style?: CSSProperties;
-}) => {
-  const base: CSSProperties = {
-    fontFamily: 'var(--font-mono)',
-    textTransform: 'uppercase',
-    letterSpacing: '0.18em',
-    fontSize: 11,
-    padding: '16px 28px',
-    border: 0,
-    cursor: 'pointer',
-    transition: 'all 120ms ease',
-    display: 'inline-block',
-    ...style,
-  };
-  const variants: Record<string, CSSProperties> = {
-    primary: { background: 'var(--inchiostro)', color: 'var(--avorio)' },
-    ghost:   { background: 'transparent', color: 'var(--inchiostro)', border: '1px solid var(--inchiostro)' },
-    brass:   { background: 'transparent', color: 'var(--ottone-brunito)', borderBottom: '1px solid var(--ottone-brunito)', padding: '14px 0' },
-  };
-  return (
-    <button onClick={onClick} type={type} style={{ ...base, ...variants[variant] }}>
-      {children}
-    </button>
-  );
-};
+}) => (
+  <button onClick={onClick} type={type} className={`btn-base btn-${variant}`} style={style}>
+    {children}
+  </button>
+);
+
+export const LinkButton = ({
+  children,
+  variant = 'primary',
+  href,
+  style = {},
+}: {
+  children: React.ReactNode;
+  variant?: 'primary' | 'ghost' | 'brass';
+  href: string;
+  style?: CSSProperties;
+}) => (
+  <Link href={href} className={`btn-base btn-${variant}`} style={style}>
+    {children}
+  </Link>
+);
 
 export const ProvenanceChain = ({ stops }: { stops: { label: string; unknown?: boolean }[] }) => (
   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, alignItems: 'center' }}>

@@ -1,38 +1,34 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { DESIGNERS } from '@/lib/data';
-import { BrassRule, MonoCaps, Button } from '@/components/Atoms';
+import { BrassRule, MonoCaps, LinkButton } from '@/components/Atoms';
 
 export default function DesignersPage() {
   const [active, setActive] = useState(0);
   const d = DESIGNERS[active];
 
   return (
-    <div style={{ padding: '64px 56px 96px' }}>
-      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 8 }}>
-        <h1 style={{
-          fontFamily: 'var(--font-serif)',
-          fontSize: 56,
-          fontWeight: 400,
-          letterSpacing: '0.02em',
-          margin: 0,
-          lineHeight: 1,
-        }}>
+    <div className="page-inner">
+      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12, marginBottom: 8 }}>
+        <h1 className="page-h1">
           <em style={{ fontStyle: 'italic' }}>Designers</em>
         </h1>
         <MonoCaps opacity={0.6}>{DESIGNERS.length} autori · 1932 — presente</MonoCaps>
       </div>
       <BrassRule width={80} style={{ margin: '24px 0 48px' }} />
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1.4fr', gap: 80, alignItems: 'start' }}>
+      <div className="grid-2-wide">
         {/* Index list */}
-        <div>
+        <nav aria-label="Designers lijst">
           {DESIGNERS.map((des, i) => (
             <div
               key={des.name}
               onClick={() => setActive(i)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setActive(i); }}
+              aria-pressed={active === i}
               style={{
                 display: 'grid',
                 gridTemplateColumns: '1fr auto',
@@ -59,10 +55,10 @@ export default function DesignersPage() {
               </MonoCaps>
             </div>
           ))}
-        </div>
+        </nav>
 
         {/* Detail panel */}
-        <div style={{ position: 'sticky', top: 32 }}>
+        <div className="sticky-panel" aria-live="polite">
           <MonoCaps size={11} opacity={0.6}>§ DESIGNER {String(active + 1).padStart(2, '0')} / {String(DESIGNERS.length).padStart(2, '0')}</MonoCaps>
           <h2 style={{
             fontFamily: 'var(--font-serif)',
@@ -85,9 +81,7 @@ export default function DesignersPage() {
             <MonoCaps size={10} opacity={0.55}>IN CATALOGO</MonoCaps>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.04em' }}>{d.pieces} pezzi documentati</div>
           </div>
-          <Link href="/catalogue" style={{ border: 0 }}>
-            <Button variant="ghost">VEDI I PEZZI · VIEW PIECES</Button>
-          </Link>
+          <LinkButton href="/catalogue" variant="ghost">VEDI I PEZZI · VIEW PIECES</LinkButton>
         </div>
       </div>
     </div>

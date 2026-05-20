@@ -6,25 +6,18 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <div style={{ padding: '80px 56px 120px' }}>
-      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
-        <h1 style={{
-          fontFamily: 'var(--font-serif)',
-          fontSize: 56,
-          fontWeight: 400,
-          letterSpacing: '0.02em',
-          margin: 0,
-          lineHeight: 1,
-        }}>
+    <div className="page-inner-lg">
+      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
+        <h1 className="page-h1">
           <em style={{ fontStyle: 'italic' }}>Contact</em>
         </h1>
         <MonoCaps opacity={0.6}>VISITA · CONDITION REPORT · ENQUIRE</MonoCaps>
       </div>
       <BrassRule width={80} style={{ margin: '24px 0 56px' }} />
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 96, alignItems: 'start' }}>
+      <div className="grid-2-contact">
         {/* Form */}
-        <div>
+        <section aria-label="Contactformulier">
           <MonoCaps size={11} opacity={0.6}>§ MODULO · FORM</MonoCaps>
           <h2 style={{
             fontFamily: 'var(--font-serif)',
@@ -35,35 +28,35 @@ export default function ContactPage() {
             maxWidth: '22ch',
             lineHeight: 1.2,
           }}>
-            <em style={{ fontStyle: 'italic' }}>Tell us</em> what you are looking for, or which piece you'd like to see.
+            <em style={{ fontStyle: 'italic' }}>Tell us</em> what you are looking for, or which piece you&apos;d like to see.
           </h2>
 
-          <form style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px 28px' }}>
+          <form className="grid-form">
             <div>
-              <label className="field-label">Nome · Name</label>
-              <input className="field" type="text" placeholder="—" />
+              <label className="field-label" htmlFor="nome">Nome · Name</label>
+              <input id="nome" className="field" type="text" placeholder="—" />
             </div>
             <div>
-              <label className="field-label">Email</label>
-              <input className="field" type="email" placeholder="—" />
+              <label className="field-label" htmlFor="email">Email</label>
+              <input id="email" className="field" type="email" placeholder="—" />
             </div>
             <div style={{ gridColumn: '1 / -1' }}>
-              <label className="field-label">Pezzo di interesse · Piece (optional)</label>
-              <input className="field" type="text" placeholder="№ 0142, or describe what you are looking for" />
+              <label className="field-label" htmlFor="pezzo">Pezzo di interesse · Piece (optional)</label>
+              <input id="pezzo" className="field" type="text" placeholder="№ 0142, or describe what you are looking for" />
             </div>
             <div style={{ gridColumn: '1 / -1' }}>
-              <label className="field-label">Messaggio · Message</label>
-              <textarea className="field" placeholder="A note to the dealer, not a checkout." rows={4} style={{ resize: 'vertical' }} />
+              <label className="field-label" htmlFor="messaggio">Messaggio · Message</label>
+              <textarea id="messaggio" className="field" placeholder="A note to the dealer, not a checkout." rows={4} style={{ resize: 'vertical' }} />
             </div>
             <div style={{ gridColumn: '1 / -1', display: 'flex', gap: 20, alignItems: 'center', marginTop: 12 }}>
               <Button type="submit">INVIA RICHIESTA · SEND</Button>
               <MonoCaps size={10} opacity={0.55}>RISPONDIAMO ENTRO 48 ORE</MonoCaps>
             </div>
           </form>
-        </div>
+        </section>
 
         {/* Address */}
-        <aside>
+        <aside aria-label="Showroom informatie">
           <MonoCaps size={11} opacity={0.6}>§ SHOWROOM</MonoCaps>
           <h2 style={{
             fontFamily: 'var(--font-serif)',

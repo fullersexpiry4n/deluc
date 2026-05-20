@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { PIECES } from '@/lib/data';
-import { LotMark, BrassRule, MonoCaps, Button, ProvenanceChain } from '@/components/Atoms';
+import { LotMark, BrassRule, MonoCaps, LinkButton, ProvenanceChain } from '@/components/Atoms';
 import { LampSilhouette } from '@/components/LampSilhouette';
 
 export async function generateStaticParams() {
@@ -36,7 +36,7 @@ export default async function ProductPage({ params }: { params: Promise<{ lot: s
   ];
 
   return (
-    <div style={{ padding: '40px 56px 96px' }}>
+    <div className="page-inner-sm">
       <Link href="/catalogue" style={{
         display: 'inline-block',
         marginBottom: 32,
@@ -49,9 +49,9 @@ export default async function ProductPage({ params }: { params: Promise<{ lot: s
         color: 'var(--inchiostro)',
       }}>← Catalogue</Link>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64 }}>
+      <div className="grid-2">
         {/* Gallery */}
-        <div>
+        <section aria-label="Afbeeldingen">
           <div style={{
             width: '100%',
             aspectRatio: '1/1',
@@ -62,7 +62,7 @@ export default async function ProductPage({ params }: { params: Promise<{ lot: s
           }}>
             <LampSilhouette tone={piece.shadeTone} />
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12, marginTop: 12 }}>
+          <div className="grid-thumbnails">
             {[0, 1, 2, 3].map(i => (
               <div key={i} style={{
                 aspectRatio: '1/1',
@@ -80,10 +80,10 @@ export default async function ProductPage({ params }: { params: Promise<{ lot: s
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
         {/* Details */}
-        <div>
+        <section aria-label="Productdetails">
           <LotMark n={piece.lot} label={piece.type} level="med" />
           <h1 style={{
             fontFamily: 'var(--font-serif)',
@@ -116,7 +116,7 @@ export default async function ProductPage({ params }: { params: Promise<{ lot: s
             ))}
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 24, marginBottom: 40, flexWrap: 'nowrap' }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 24, marginBottom: 40, flexWrap: 'wrap' }}>
             <div style={{ fontFamily: 'var(--font-serif)', fontSize: 28, whiteSpace: 'nowrap' }}>
               € {piece.price.toLocaleString('it-IT')}
             </div>
@@ -124,19 +124,15 @@ export default async function ProductPage({ params }: { params: Promise<{ lot: s
           </div>
 
           <div style={{ display: 'flex', gap: 20, alignItems: 'center', marginBottom: 40, flexWrap: 'wrap' }}>
-            <Link href="/contact" style={{ border: 0 }}>
-              <Button>RICHIESTA · ENQUIRE</Button>
-            </Link>
-            <Link href="/contact" style={{ border: 0 }}>
-              <Button variant="brass">Richiedi ulteriori fotografie</Button>
-            </Link>
+            <LinkButton href="/contact">RICHIESTA · ENQUIRE</LinkButton>
+            <LinkButton href="/contact" variant="brass">Richiedi ulteriori fotografie</LinkButton>
           </div>
 
           <MonoCaps size={10} opacity={0.55}>PROVENIENZA</MonoCaps>
           <div style={{ marginTop: 10 }}>
             <ProvenanceChain stops={prov} />
           </div>
-        </div>
+        </section>
       </div>
     </div>
   );

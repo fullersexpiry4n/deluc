@@ -283,6 +283,66 @@ a:hover { border-bottom-color: var(--link); }
   .header-inner   { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
 }
 
+/* ── Inner page layouts ───────────────────────────────────── */
+.page-inner    { padding: 64px 56px 96px; }
+.page-inner-lg { padding: 80px 56px 120px; }
+.page-inner-sm { padding: 40px 56px 96px; }
+.page-h1 { font-size: 56px; line-height: 1; letter-spacing: 0.02em; margin: 0; }
+.grid-2         { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.grid-2-contact { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: start; }
+.grid-2-wide    { display: grid; grid-template-columns: 1.1fr 1.4fr; gap: 80px; align-items: start; }
+.grid-form      { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 28px; }
+.grid-thumbnails { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 12px; }
+.sticky-panel   { position: sticky; top: 32px; }
+
+/* ── Filter chips ─────────────────────────────────────────── */
+.filter-chip {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  padding: 8px 14px;
+  border: 1px solid var(--inchiostro);
+  background: transparent;
+  color: var(--inchiostro);
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease;
+}
+.filter-chip:hover { background: var(--travertino); }
+.filter-chip.active { background: var(--inchiostro); color: var(--avorio); }
+.filter-chip.active:hover { background: var(--inchiostro); }
+
+/* ── Form label ────────────────────────────────────────────── */
+.field-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  opacity: 0.55;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 1024px) {
+  .page-inner     { padding: 48px 40px 72px; }
+  .page-inner-lg  { padding: 64px 40px 96px; }
+  .page-inner-sm  { padding: 32px 40px 72px; }
+  .page-h1        { font-size: 44px; }
+  .grid-2-wide    { grid-template-columns: 1fr; gap: 48px; }
+  .grid-2-contact { grid-template-columns: 1fr; gap: 48px; }
+}
+
+@media (max-width: 640px) {
+  .page-inner     { padding: 32px 20px 56px; }
+  .page-inner-lg  { padding: 40px 20px 64px; }
+  .page-inner-sm  { padding: 28px 20px 48px; }
+  .page-h1        { font-size: 32px; }
+  .grid-2         { grid-template-columns: 1fr; gap: 40px; }
+  .grid-form      { grid-template-columns: 1fr; }
+  .grid-thumbnails { grid-template-columns: repeat(3, 1fr); }
+  .sticky-panel   { position: static; }
+}
+
 /* ── Reduced motion ────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
